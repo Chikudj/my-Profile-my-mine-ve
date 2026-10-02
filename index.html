@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Venance Musa Nyuma - Founder & CEO of Mjapani Movies | Information Systems Graduate & Digital Entrepreneur">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Venance Musa Nyuma · Founder & CEO, Mjapani Movies</title>
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Devicon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <!-- html2pdf for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: rgba(22, 22, 35, 0.7);
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b8;
+            --text-tertiary: #6b6b80;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --accent-primary: #ff3366;
+            --accent-secondary: #7c5cfc;
+            --accent-tertiary: #00d4ff;
+            --gradient-1: linear-gradient(135deg, #ff3366, #ff6b6b);
+            --gradient-2: linear-gradient(135deg, #7c5cfc, #a855f7);
+            --gradient-hero: linear-gradient(135deg, #ff3366, #7c5cfc, #00d4ff);
+            --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.5);
+            --glass-bg: rgba(22, 22, 35, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f5fa;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --text-tertiary: #8a8aa0;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 32px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.08);
+        }
+
+        html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; font-size: 16px; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary); color: var(--text-primary);
+            overflow-x: hidden; min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased; line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+
+        .bg-grid {
+            position: fixed; inset: 0; z-index: -2; pointer-events: none;
+            background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 0.75rem 2rem; transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border); box-shadow: var(--shadow-md);
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700;
+            background: var(--gradient-hero); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500;
+            transition: all 0.2s ease; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-links a:hover { color: var(--text-primary); background: var(--border-color); }
+        .nav-links a i { font-size: 0.85rem; }
+
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; padding: 8px; background: none; border: none; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-menu {
+            display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
+            z-index: 999; background: var(--bg-card); backdrop-filter: blur(20px);
+            border-left: 1px solid var(--glass-border); padding: 5rem 1.5rem 2rem;
+            transform: translateX(100%); transition: transform 0.3s ease; box-shadow: var(--shadow-lg);
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu a {
+            display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem;
+            border-radius: 10px; color: var(--text-secondary); text-decoration: none;
+            font-size: 1rem; font-weight: 500; transition: all 0.2s ease;
+        }
+        .mobile-menu a:hover { background: var(--border-color); color: var(--text-primary); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.65rem 1.5rem; border-radius: 50px;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600;
+            text-decoration: none; cursor: pointer; transition: all 0.3s ease;
+            border: none; white-space: nowrap;
+        }
+        .btn-primary { background: var(--gradient-1); color: white; box-shadow: 0 4px 15px rgba(255,51,102,0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,51,102,0.4); }
+        .btn-outline { background: transparent; color: var(--text-primary); border: 2px solid var(--border-color); }
+        .btn-outline:hover { border-color: var(--accent-primary); }
+        .btn-icon {
+            width: 40px; height: 40px; padding: 0; border-radius: 50%; justify-content: center;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: var(--text-primary); font-size: 1rem;
+        }
+
+        .btn-cv { background: var(--gradient-2); color: white; border: none; }
+        .btn-cv:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124,92,252,0.4); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; padding: 6rem 2rem 4rem;
+        }
+        .hero-content { text-align: center; max-width: 800px; z-index: 2; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .hero-avatar-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 1.5rem; }
+        .hero-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-primary); box-shadow: 0 0 40px rgba(255,51,102,0.3); }
+        .hero-avatar-ring { position: absolute; inset: -8px; border: 2px solid var(--accent-secondary); border-radius: 50%; border-top-color: transparent; animation: spin 8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 50px; background: var(--glass-bg); border: 1px solid var(--glass-border); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem; backdrop-filter: blur(20px); }
+        .hero-badge i { color: #2ecc71; font-size: 0.6rem; }
+        
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .hero-title .gradient-text { background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-secondary); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+        .hero-subtitle i { color: var(--accent-primary); }
+        .hero-location { font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 2rem; }
+        .hero-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+        /* Sections */
+        .section { padding: 5rem 2rem; }
+        .section-container { max-width: 1100px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-primary); font-weight: 600; margin-bottom: 0.75rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; }
+
+        /* About Grid */
+        .about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; align-items: start; }
+        
+        .profile-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 2rem; backdrop-filter: blur(20px);
+            position: sticky; top: 100px; box-shadow: var(--shadow-md);
+        }
+        .profile-photo { width: 130px; height: 130px; border-radius: 20px; overflow: hidden; margin: 0 auto 1.25rem; border: 2px solid var(--accent-primary); box-shadow: 0 8px 25px rgba(255,51,102,0.25); }
+        .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-name { text-align: center; font-size: 1.3rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .profile-role { text-align: center; color: var(--text-tertiary); font-size: 0.85rem; margin-bottom: 1.25rem; }
+        
+        .profile-info { display: flex; flex-direction: column; gap: 0.5rem; }
+        .profile-info-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 10px; background: rgba(255,255,255,0.02); font-size: 0.85rem; color: var(--text-secondary); transition: all 0.2s ease; }
+        .profile-info-item:hover { background: rgba(255,255,255,0.04); transform: translateX(3px); }
+        .profile-info-item i { width: 18px; color: var(--accent-primary); font-size: 0.8rem; text-align: center; flex-shrink: 0; }
+        
+        .profile-social { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); }
+        .profile-social a { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); text-decoration: none; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); font-size: 0.85rem; transition: all 0.2s ease; }
+        .profile-social a:hover { background: var(--gradient-1); color: white; border-color: transparent; transform: translateY(-3px); }
+
+        /* Cards */
+        .content-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+        .card { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 20px; padding: 1.75rem; backdrop-filter: blur(20px); box-shadow: var(--shadow-md); }
+        .card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; color: var(--accent-primary); font-size: 1.1rem; font-weight: 600; }
+        .card p { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
+
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .skill-tag { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500; cursor: default; }
+        .skill-tag:nth-child(odd) { background: rgba(255,51,102,0.08); color: var(--accent-primary); border: 1px solid rgba(255,51,102,0.2); }
+        .skill-tag:nth-child(even) { background: rgba(124,92,252,0.08); color: var(--accent-secondary); border: 1px solid rgba(124,92,252,0.2); }
+        .skill-tag i { font-size: 1rem; }
+
+        .timeline { position: relative; padding-left: 1.5rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary)); }
+        .timeline-item { position: relative; padding-bottom: 1.5rem; padding-left: 1.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -1.65rem; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-primary); border: 2px solid var(--bg-primary); }
+        .timeline-date { font-size: 0.8rem; color: var(--accent-primary); font-weight: 600; margin-bottom: 0.2rem; }
+        .timeline-title { font-weight: 600; font-size: 1rem; }
+        .timeline-desc { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+        /* Projects */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .project-card { border-radius: 20px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--glass-border); cursor: pointer; position: relative; min-height: 280px; box-shadow: var(--shadow-md); transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .project-card-bg { position: absolute; inset: 0; background: var(--gradient-1); opacity: 0.8; }
+        .project-card:nth-child(2) .project-card-bg { background: var(--gradient-2); }
+        .project-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; }
+        .project-card-content h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+        .project-card-content p { font-size: 0.85rem; opacity: 0.85; margin-bottom: 0.75rem; }
+        .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+        .project-tag { padding: 0.2rem 0.6rem; border-radius: 50px; background: rgba(255,255,255,0.2); font-size: 0.7rem; display: flex; align-items: center; gap: 0.3rem; }
+        .project-links { display: flex; gap: 0.75rem; }
+        .project-links a { color: white; text-decoration: none; font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem; }
+
+        /* Course Clusters */
+        .course-clusters { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+        .cluster-card { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.2rem 1.4rem; backdrop-filter: blur(10px); transition: all 0.2s ease; }
+        .cluster-card:hover { transform: translateY(-3px); border-color: var(--accent-primary); }
+        .cluster-card h4 { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .cluster-card h4 i { color: var(--accent-secondary); }
+        .cluster-card ul { list-style: none; padding: 0; }
+        .cluster-card ul li { font-size: 0.8rem; color: var(--text-secondary); padding: 0.15rem 0; display: flex; align-items: baseline; gap: 0.3rem; }
+        .cluster-card ul li::before { content: "▹"; color: var(--accent-primary); font-size: 0.6rem; }
+
+        /* Certificates */
+        .cert-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+        .cert-item { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 50px; background: rgba(124,92,252,0.08); border: 1px solid rgba(124,92,252,0.15); font-size: 0.8rem; color: var(--text-secondary); }
+        .cert-item i { color: #f5b342; font-size: 0.85rem; }
+        .cert-item .cert-org { color: var(--text-tertiary); font-size: 0.7rem; margin-left: 0.1rem; }
+
+        /* Contact */
+        .contact-section { background: var(--bg-secondary); padding: 5rem 2rem; text-align: center; }
+        .contact-circle { display: inline-block; position: relative; padding: 4rem 3rem; }
+        .contact-circle::before { content: ''; position: absolute; width: 450px; height: 450px; border: 1px solid var(--border-color); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spin 40s linear infinite; }
+        .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .contact-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.5rem; border-radius: 50px; border: 1px solid var(--border-color); color: var(--text-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; background: var(--bg-card); backdrop-filter: blur(20px); transition: all 0.3s ease; }
+        .contact-link:hover { background: var(--gradient-1); color: white; border-color: transparent; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,51,102,0.3); }
+
+        .footer { text-align: center; padding: 2rem; background: var(--bg-primary); border-top: 1px solid var(--border-color); color: var(--text-tertiary); font-size: 0.85rem; }
+        .footer i { color: var(--accent-primary); }
+
+        /* Floating Buttons */
+        .floating-btns { position: fixed; bottom: 2rem; right: 2rem; display: flex; flex-direction: column; gap: 0.75rem; z-index: 100; }
+        .float-btn { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; backdrop-filter: blur(20px); transition: all 0.3s ease; box-shadow: var(--shadow-md); }
+        .float-btn:hover { transform: translateY(-3px); border-color: var(--accent-primary); }
+        .float-btn.chat-btn { background: var(--gradient-2); color: white; border: none; box-shadow: 0 8px 25px rgba(124,92,252,0.4); animation: floatBounce 2s infinite; position: relative; }
+        .float-btn.chat-btn::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid rgba(124,92,252,0.5); animation: ripplePulse 2s infinite; }
+        @keyframes floatBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes ripplePulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.3); opacity: 0; } }
+        .float-btn.chat-btn:hover { animation: none; }
+        .float-btn.chat-btn i { font-size: 1.3rem; }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed; bottom: 6rem; right: 2rem; width: 380px; height: 500px;
+            z-index: 101; background: var(--bg-card); border: 1px solid var(--glass-border);
+            border-radius: 20px; display: flex; flex-direction: column; overflow: hidden;
+            box-shadow: var(--shadow-lg); transform: scale(0); opacity: 0;
+            transform-origin: bottom right; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            backdrop-filter: blur(20px);
+        }
+        .chat-widget.open { transform: scale(1); opacity: 1; }
+        .chat-widget-header { padding: 1rem 1.25rem; background: var(--gradient-2); color: white; display: flex; align-items: center; gap: 0.75rem; }
+        .chat-avatar-small { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; position: relative; }
+        .chat-avatar-small::after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 10px; height: 10px; background: #2ecc71; border-radius: 50%; border: 2px solid var(--accent-secondary); }
+        .chat-widget-body { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+        .chat-msg { display: flex; gap: 0.5rem; max-width: 88%; animation: chatSlide 0.3s ease; }
+        @keyframes chatSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-msg.bot { align-self: flex-start; }
+        .chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+        .chat-msg-avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; }
+        .chat-msg.bot .chat-msg-avatar { background: var(--accent-secondary); }
+        .chat-msg.user .chat-msg-avatar { background: var(--accent-primary); }
+        .chat-msg-content { padding: 0.65rem 0.9rem; border-radius: 14px; font-size: 0.85rem; line-height: 1.5; word-break: break-word; }
+        .chat-msg.bot .chat-msg-content { background: rgba(124,92,252,0.1); border: 1px solid var(--border-color); border-top-left-radius: 4px; }
+        .chat-msg.user .chat-msg-content { background: var(--gradient-1); color: white; border-top-right-radius: 4px; }
+        
+        .typing-dots { display: flex; gap: 4px; padding: 5px 0; }
+        .typing-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--text-tertiary); animation: dotBounce 1.4s infinite; }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotBounce { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+
+        .chat-quick-actions { padding: 0.6rem 1rem; display: flex; gap: 0.4rem; flex-wrap: wrap; border-top: 1px solid var(--border-color); overflow-x: auto; }
+        .chat-quick-btn { padding: 0.4rem 0.8rem; border-radius: 50px; border: 1px solid var(--border-color); background: transparent; color: var(--text-secondary); cursor: pointer; font-size: 0.7rem; font-family: 'Inter', sans-serif; transition: all 0.2s ease; white-space: nowrap; display: flex; align-items: center; gap: 0.3rem; }
+        .chat-quick-btn:hover { border-color: var(--accent-primary); color: var(--text-primary); background: rgba(255,51,102,0.05); }
+        .chat-input-wrap { padding: 0.75rem 1rem; border-top: 1px solid var(--border-color); display: flex; gap: 0.5rem; }
+        .chat-input { flex: 1; padding: 0.65rem 1rem; border-radius: 50px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); font-size: 0.85rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s ease; }
+        .chat-input:focus { border-color: var(--accent-primary); }
+        .chat-send-btn { width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--gradient-2); color: white; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0; }
+        .chat-send-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(124,92,252,0.4); }
+
+        .overlay { position: fixed; inset: 0; z-index: 99; background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .overlay.active { opacity: 1; pointer-events: all; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid { grid-template-columns: 1fr; max-width: 550px; margin: 0 auto; }
+            .profile-card { position: static; }
+            .projects-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu { display: block; }
+            .hero { padding: 5rem 1.25rem 3rem; }
+            .section { padding: 3rem 1.25rem; }
+            .hero-actions { flex-direction: column; align-items: center; }
+            .hero-actions .btn { width: 100%; max-width: 280px; justify-content: center; }
+            .contact-circle::before { width: 280px; height: 280px; }
+            .contact-links { flex-direction: column; align-items: center; }
+            .contact-link { width: 100%; max-width: 280px; justify-content: center; }
+            .chat-widget { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; height: 460px; border-radius: 16px; }
+            .floating-btns { bottom: 1.5rem; right: 1rem; }
+            .float-btn { width: 46px; height: 46px; font-size: 1.1rem; }
+            .course-clusters { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            html { font-size: 14px; }
+            .hero-title { font-size: 1.8rem; }
+            .section-title { font-size: 1.5rem; }
+            .profile-card, .card { padding: 1.25rem; }
+            .profile-photo { width: 100px; height: 100px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .course-clusters { grid-template-columns: 1fr; }
+        }
+
+        /* ===== HIDDEN CV CONTENT (for PDF) ===== */
+        #cvContent {
+            display: none;
+        }
+
+        .loader-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(8, 12, 18, 0.85); backdrop-filter: blur(6px);
+            display: none; align-items: center; justify-content: center;
+            z-index: 9999; flex-direction: column; gap: 1.5rem;
+        }
+        .loader-overlay.active { display: flex; }
+        .loader-overlay .spinner {
+            width: 48px; height: 48px;
+            border: 4px solid rgba(0, 200, 200, 0.1);
+            border-top: 4px solid #00c8c8;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .loader-overlay p { color: #b0c8d8; font-size: 1.1rem; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Loader -->
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="spinner"></div>
+        <p><i class="fas fa-file-pdf" style="color:#00c8c8;"></i> Generating your CV ...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">&lt;VN/&gt;</a>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-house"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#growth"><i class="fas fa-seedling"></i> Growth</a></li>
+                <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
+                <li><a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a></li>
+            </ul>
+            <button class="btn-icon" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home"><i class="fas fa-house"></i> Home</a>
+        <a href="#about"><i class="fas fa-user"></i> About</a>
+        <a href="#growth"><i class="fas fa-seedling"></i> Growth</a>
+        <a href="#projects"><i class="fas fa-code"></i> Projects</a>
+        <a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-avatar-wrap">
+                <div class="hero-avatar-ring"></div>
+                <img src="photo.jpg" alt="Venance Musa Nyuma" class="hero-avatar" onerror="this.style.background='var(--gradient-1)'; this.style.display='block';">
+            </div>
+            <div class="hero-badge">
+                <i class="fas fa-circle"></i> Available for Opportunities
+            </div>
+            <h1 class="hero-title">
+                Venance Musa <span class="gradient-text">Nyuma</span>
+            </h1>
+            <p class="hero-subtitle">
+                <i class="fas fa-rocket"></i> Founder & CEO, Mjapani Movies <i class="fas fa-laptop-code"></i>
+            </p>
+            <p class="hero-location">
+                <i class="fas fa-location-dot"></i> Dodoma, Tanzania &bull; <i class="fas fa-graduation-cap"></i> BSc Information Systems
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary"><i class="fas fa-eye"></i> View Work</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-comment"></i> Get In Touch</a>
+                <button class="btn btn-cv" id="downloadCvBtn"><i class="fas fa-file-pdf"></i> Download CV</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-id-card"></i> About Me</div>
+                <h2 class="section-title">Founder, Entrepreneur & IS Graduate</h2>
+            </div>
+            <div class="about-grid">
+                <div class="profile-card">
+                    <div class="profile-photo">
+                        <img src="photo.jpg" alt="Venance Musa Nyuma" onerror="this.style.background='var(--gradient-1)'; this.style.display='block';">
+                    </div>
+                    <div class="profile-name">Venance Musa Nyuma</div>
+                    <div class="profile-role">Founder &amp; CEO · Digital Entrepreneur</div>
+                    <div class="profile-info">
+                        <div class="profile-info-item"><i class="fas fa-location-dot"></i><span>Dodoma, Tanzania</span></div>
+                        <div class="profile-info-item"><i class="fas fa-envelope"></i><span>contact@mjapanimovies.online</span></div>
+                        <div class="profile-info-item"><i class="fas fa-phone"></i><span>+255 685 853 506</span></div>
+                        <div class="profile-info-item"><i class="fab fa-whatsapp"></i><span>+255 675 104 490</span></div>
+                        <div class="profile-info-item"><i class="fas fa-globe"></i><span>Tanzanian</span></div>
+                        <div class="profile-info-item"><i class="fas fa-language"></i><span>Swahili (Native), English (Fluent)</span></div>
+                        <div class="profile-info-item"><i class="fas fa-graduation-cap"></i><span>BSc Information Systems · UDOM</span></div>
+                    </div>
+                    <div class="profile-social">
+                        <a href="mailto:contact@mjapanimovies.online" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/255675104490" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://github.com/Firstborn-tz" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://mjapanimovies.online" aria-label="Mjapani Movies Website" target="_blank"><i class="fas fa-film"></i></a>
+                    </div>
+                </div>
+                <div class="content-stack">
+                    <div class="card">
+                        <div class="card-header"><i class="fas fa-quote-right"></i> Professional Summary</div>
+                        <p>Entrepreneurial Information Systems graduate and Founder &amp; CEO of Mjapani Movies, a Swahili-language movie streaming platform built and operated independently from the ground up. Combines hands-on business leadership with direct sales experience and a solid technical foundation, and is currently deepening data and AI skills through a competitive scholarship. Driven by a genuine passion for building practical, accessible digital solutions for East African audiences.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><i class="fas fa-microchip"></i> Core Skills</div>
+                        <div class="skills-grid">
+                            <span class="skill-tag"><i class="fas fa-laptop-code"></i> Information Systems</span>
+                            <span class="skill-tag"><i class="fas fa-globe"></i> Digital Platform Management</span>
+                            <span class="skill-tag"><i class="fas fa-chart-pie"></i> Data Analysis (Learning)</span>
+                            <span class="skill-tag"><i class="fas fa-file-word"></i> Microsoft Office</span>
+                            <span class="skill-tag"><i class="fas fa-briefcase"></i> Business Leadership</span>
+                            <span class="skill-tag"><i class="fas fa-bullseye"></i> Business Development</span>
+                            <span class="skill-tag"><i class="fas fa-handshake"></i> Direct Sales &amp; Customer Engagement</span>
+                            <span class="skill-tag"><i class="fas fa-video"></i> Video Editing &amp; Animation</span>
+                            <span class="skill-tag"><i class="fas fa-language"></i> Content Translation &amp; Localisation</span>
+                            <span class="skill-tag"><i class="fas fa-people-arrows"></i> Leadership</span>
+                            <span class="skill-tag"><i class="fas fa-comments"></i> Communication (Swahili &amp; English)</span>
+                            <span class="skill-tag"><i class="fas fa-users"></i> Team Collaboration</span>
+                            <span class="skill-tag"><i class="fas fa-puzzle-piece"></i> Problem-Solving</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><i class="fas fa-briefcase"></i> Work Experience</div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">2026 &ndash; Ongoing</div>
+                                <div class="timeline-title">Founder &amp; Chief Executive Officer &middot; Mjapani Movies</div>
+                                <div class="timeline-desc">Founded and lead a Swahili-language movie streaming platform (mjapanimovies.online) end-to-end &mdash; content sourcing, translation/localisation, video production, platform operations, and business growth.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">Prior</div>
+                                <div class="timeline-title">Solar Sales Agent &middot; SUNKING</div>
+                                <div class="timeline-desc">Promoted and sold solar home systems directly to households and communities. Built strong customer relationships through reliable, hands-on service.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">Prior</div>
+                                <div class="timeline-title">Shop Attendant &middot; Wholesale Shop</div>
+                                <div class="timeline-desc">Retail sales and customer service at a wholesale shop trading in local and imported goods.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><i class="fas fa-graduation-cap"></i> Education</div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">2025 / 2026</div>
+                                <div class="timeline-title">BSc Information Systems</div>
+                                <div class="timeline-desc">University of Dodoma (UDOM) &middot; Certificate Pending</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2020</div>
+                                <div class="timeline-title">Certificate of Secondary Education</div>
+                                <div class="timeline-desc">Msisi Juu Secondary School</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Growth -->
+    <section class="section" id="growth">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-seedling"></i> Continuous Learning</div>
+                <h2 class="section-title">Currently Growing</h2>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0.5rem auto 0;">Investing in new skills alongside running Mjapani Movies day-to-day.</p>
+            </div>
+            <div class="course-clusters">
+                <div class="cluster-card"><h4><i class="fas fa-chart-line"></i> Data Science &amp; AI Scholarship</h4><ul><li>Innovation Kgotla &times; DataCamp Donates</li><li>Structured Data Analyst / Data Scientist track</li><li>Applying new skills directly to Mjapani Movies audience &amp; growth data</li></ul></div>
+                <div class="cluster-card"><h4><i class="fas fa-rocket"></i> Entrepreneurship in Practice</h4><ul><li>Founding &amp; operating a digital platform from scratch</li><li>Content strategy, localisation &amp; audience growth</li><li>Business operations &amp; decision-making</li></ul></div>
+                <div class="cluster-card"><h4><i class="fas fa-people-group"></i> Sales &amp; Customer Engagement</h4><ul><li>Direct, door-to-door solar sales (SUNKING)</li><li>Retail &amp; wholesale customer service</li><li>Relationship building &amp; communication</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-star"></i> Portfolio</div>
+                <h2 class="section-title">Featured Project</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-card-bg" style="background: linear-gradient(135deg, #16324F, #3AA6A0);"></div>
+                    <div class="project-card-content">
+                        <h3><i class="fas fa-film"></i> Mjapani Movies</h3>
+                        <p>An online movie streaming platform bringing Hollywood, Nollywood, and international films to audiences translated and localised into Swahili &mdash; built and operated independently, end-to-end.</p>
+                        <div class="project-tags">
+                            <span class="project-tag"><i class="fas fa-language"></i> Localisation</span>
+                            <span class="project-tag"><i class="fas fa-play"></i> Streaming</span>
+                            <span class="project-tag"><i class="fas fa-users"></i> Freemium</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://mjapanimovies.online" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> Visit Site</a>
+                            <a href="https://github.com/Firstborn-tz" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <div class="section-tag"><i class="fas fa-paper-plane"></i> Contact</div>
+            <h2 class="section-title">Let's Work Together</h2>
+        </div>
+        <div class="contact-circle">
+            <p style="color:var(--text-secondary); margin-bottom:2rem; font-size:1.1rem;">Have an opportunity or idea in mind? Let's talk.</p>
+            <div class="contact-links">
+                <a href="mailto:contact@mjapanimovies.online" class="contact-link"><i class="fas fa-envelope"></i> Email Me</a>
+                <a href="https://wa.me/255675104490" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://github.com/Firstborn-tz" class="contact-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://mjapanimovies.online" class="contact-link" target="_blank"><i class="fas fa-film"></i> Mjapani Movies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Venance Musa Nyuma &bull; Crafted with <i class="fas fa-heart"></i> and <i class="fas fa-mug-hot"></i> &bull; Founder, Mjapani Movies</p>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-btns">
+        <button class="float-btn" id="backToTop" aria-label="Back to top" style="opacity:0;visibility:hidden;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="float-btn chat-btn" id="chatToggle" aria-label="Chat with AI">
+            <i class="fas fa-headset"></i>
+        </button>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-widget-header">
+            <div class="chat-avatar-small"><i class="fas fa-headset"></i></div>
+            <div>
+                <strong style="font-size:0.9rem;">Venance's AI Assistant</strong>
+                <small style="display:block;opacity:0.8;font-size:0.7rem;"><i class="fab fa-google"></i> Powered by Gemini</small>
+            </div>
+            <button style="margin-left:auto;background:none;border:none;color:white;cursor:pointer;font-size:1rem;" onclick="closeChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-widget-body" id="chatBody">
+            <div class="chat-msg bot">
+                <div class="chat-msg-avatar"><i class="fas fa-headset"></i></div>
+                <div class="chat-msg-content">Hello! <i class="fas fa-hand-sparkles"></i> I'm Venance's AI assistant. Ask me about his skills, experience, projects, or anything you'd like to know!</div>
+            </div>
+        </div>
+        <div class="chat-quick-actions">
+            <button class="chat-quick-btn" onclick="quickAsk('What skills does Venance have?')"><i class="fas fa-code"></i> Skills</button>
+            <button class="chat-quick-btn" onclick="quickAsk('Tell me about Venance experience')"><i class="fas fa-briefcase"></i> Experience</button>
+            <button class="chat-quick-btn" onclick="quickAsk('Tell me about Mjapani Movies')"><i class="fas fa-film"></i> Projects</button>
+            <button class="chat-quick-btn" onclick="quickAsk('How can I contact Venance?')"><i class="fas fa-envelope"></i> Contact</button>
+        </div>
+        <div class="chat-input-wrap">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button class="chat-send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- ===== HIDDEN CV CONTENT (for PDF generation) ===== -->
+    <div id="cvContent" style="display: none;">
+        <div style="max-width: 900px; margin: 0 auto; background: #12121a; color: #e4edf2; padding: 2.5rem 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); font-family: 'Inter', 'Segoe UI', sans-serif;">
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; border-bottom: 2px solid rgba(255,51,102,0.15); padding-bottom: 1.2rem; margin-bottom: 1.5rem;">
+                <div>
+                    <h1 style="font-size: 2.8rem; font-weight: 700; margin: 0; background: linear-gradient(135deg, #ff3366, #7c5cfc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Venance Musa Nyuma</h1>
+                    <div style="font-size: 1.1rem; color: #a0a0b8;"><i class="fas fa-bolt" style="color: #ff3366;"></i> Founder &amp; CEO, Mjapani Movies</div>
+                </div>
+                <div style="text-align: right; color: #a0a0b8; font-size: 0.92rem; line-height: 1.8;">
+                    <div><i class="fas fa-phone-alt" style="color: #ff3366; width: 1.4rem;"></i> +255 685 853 506</div>
+                    <div><i class="fas fa-envelope" style="color: #ff3366; width: 1.4rem;"></i> contact@mjapanimovies.online</div>
+                    <div><i class="fas fa-location-dot" style="color: #ff3366; width: 1.4rem;"></i> Dodoma, Tanzania</div>
+                    <div><i class="fab fa-github" style="color: #ff3366; width: 1.4rem;"></i> github.com/Firstborn-tz</div>
+                </div>
+            </div>
+
+            <!-- Profile -->
+            <div style="background: rgba(255,51,102,0.04); border-radius: 16px; padding: 0.8rem 1.6rem; margin-bottom: 1.5rem; border-left: 4px solid #ff3366;">
+                <p style="margin: 0; color: #c0d0da; font-size: 0.95rem;"><i class="fas fa-quote-left" style="color: #ff3366; margin-right: 0.6rem;"></i> Entrepreneurial Information Systems graduate and Founder &amp; CEO of Mjapani Movies, a Swahili-language movie streaming platform built and operated independently. Combines hands-on business leadership with direct sales experience and a solid technical foundation, currently deepening data and AI skills through a competitive scholarship.</p>
+            </div>
+
+            <!-- Two columns -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <!-- Left -->
+                <div>
+                    <h3 style="color: #ff3366; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem; font-size: 1.05rem;"><i class="fas fa-briefcase" style="color: #ff3366;"></i> Experience</h3>
+                    <div style="margin-top: 0.6rem;">
+                        <strong style="color: #d0e4ec;">Founder &amp; Chief Executive Officer</strong>
+                        <span style="color: #6b6b80; font-size: 0.82rem; display: block;">Mjapani Movies &middot; 2026 &ndash; Ongoing</span>
+                        <ul style="list-style: none; padding-left: 0.2rem; color: #b0c0d0; font-size: 0.88rem;">
+                            <li><i class="fas fa-chevron-right" style="color: #ff3366; font-size: 0.6rem; margin-right: 0.4rem;"></i> Founded &amp; lead a Swahili movie streaming platform end-to-end</li>
+                            <li><i class="fas fa-chevron-right" style="color: #ff3366; font-size: 0.6rem; margin-right: 0.4rem;"></i> Content translation, localisation &amp; video production</li>
+                            <li><i class="fas fa-chevron-right" style="color: #ff3366; font-size: 0.6rem; margin-right: 0.4rem;"></i> Business operations, growth &amp; decision-making</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <strong style="color: #d0e4ec;">Solar Sales Agent</strong>
+                        <span style="color: #6b6b80; font-size: 0.82rem; display: block;">SUNKING &middot; Solar Energy Company</span>
+                        <ul style="list-style: none; padding-left: 0.2rem; color: #b0c0d0; font-size: 0.88rem;">
+                            <li><i class="fas fa-chevron-right" style="color: #ff3366; font-size: 0.6rem; margin-right: 0.4rem;"></i> Direct sales of solar home systems to households</li>
+                            <li><i class="fas fa-chevron-right" style="color: #ff3366; font-size: 0.6rem; margin-right: 0.4rem;"></i> Customer engagement &amp; relationship building</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <strong style="color: #d0e4ec;">Shop Attendant</strong>
+                        <span style="color: #6b6b80; font-size: 0.82rem; display: block;">Wholesale Shop &middot; Local &amp; Imported Goods</span>
+                    </div>
+
+                    <h3 style="color: #ff3366; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem; margin-top: 1.5rem; font-size: 1.05rem;"><i class="fas fa-graduation-cap" style="color: #ff3366;"></i> Education</h3>
+                    <div style="margin-top: 0.4rem;">
+                        <strong style="color: #d0e4ec;">BSc Information Systems</strong>
+                        <span style="color: #6b6b80; font-size: 0.82rem; display: block;">University of Dodoma (2025/2026) &middot; Certificate Pending</span>
+                    </div>
+                    <div style="margin-top: 0.3rem;">
+                        <strong style="color: #d0e4ec;">Certificate of Secondary Education</strong>
+                        <span style="color: #6b6b80; font-size: 0.82rem; display: block;">Msisi Juu Secondary School (2020)</span>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div>
+                    <h3 style="color: #ff3366; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem; font-size: 1.05rem;"><i class="fas fa-cogs" style="color: #ff3366;"></i> Skills</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem; margin-top: 0.4rem;">
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Information Systems</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Digital Platform Mgmt</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Data Analysis (Learning)</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Business Leadership</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Business Development</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Direct Sales</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Video Editing</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Content Localisation</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Leadership</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Communication</span>
+                        <span style="background: rgba(255,51,102,0.06); padding: 0.15rem 0.8rem; border-radius: 30px; font-size: 0.78rem; color: #c0d0da; border: 1px solid rgba(255,51,102,0.08);">Microsoft Office</span>
+                    </div>
+
+                    <h3 style="color: #ff3366; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem; margin-top: 1.5rem; font-size: 1.05rem;"><i class="fas fa-seedling" style="color: #ff3366;"></i> Currently Growing</h3>
+                    <ul style="list-style: none; padding-left: 0; color: #b0c0d0; font-size: 0.88rem;">
+                        <li><i class="fas fa-check-circle" style="color: #2ecc71; font-size: 0.7rem; margin-right: 0.4rem;"></i> Data Science &amp; AI Scholarship &ndash; Innovation Kgotla &times; DataCamp</li>
+                    </ul>
+
+                    <h3 style="color: #ff3366; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem; margin-top: 1.5rem; font-size: 1.05rem;"><i class="fas fa-language" style="color: #ff3366;"></i> Languages</h3>
+                    <div style="display: flex; gap: 1.8rem; font-size: 0.92rem; color: #b0c0d0;">
+                        <span><strong style="color: #d0e4ec;">Swahili</strong> · Native</span>
+                        <span><strong style="color: #d0e4ec;">English</strong> · Fluent</span>
+                    </div>
+
+                    <h3 style="color: #ff3366; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem; margin-top: 1.5rem; font-size: 1.05rem;"><i class="fas fa-rocket" style="color: #ff3366;"></i> Project</h3>
+                    <div style="color: #b0c0d0; font-size: 0.92rem;">
+                        <strong style="color: #d0e4ec;">Mjapani Movies</strong>
+                        <div style="font-size: 0.82rem; color: #6b6b80;">Swahili movie streaming platform · <i class="fas fa-globe"></i> mjapanimovies.online</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.06); margin-top: 2rem; padding-top: 1rem; text-align: center; color: #4a5a6a; font-size: 0.78rem; letter-spacing: 0.5px;">
+                <i class="far fa-copyright"></i> 2026 Venance Musa Nyuma · Founder, Mjapani Movies
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // ============ GEMINI AI ============
+    // TODO: Paste your own Gemini API key below (get one free at https://aistudio.google.com/apikey).
+    // Never share this key publicly elsewhere. For a public GitHub Pages site, restrict the key
+    // to your domain in Google AI Studio / Google Cloud Console (API restrictions) to prevent abuse.
+    const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
+    const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY;
+    
+    const VENANCE_PROMPT = `You are a helpful AI assistant on Venance Musa Nyuma's portfolio website.
+
+ABOUT VENANCE:
+- Full Name: Venance Musa Nyuma
+- Title: Founder & CEO, Mjapani Movies | Information Systems Graduate
+- Location: Dodoma, Tanzania
+- Email: contact@mjapanimovies.online | Phone: +255 685 853 506
+- Education: BSc Information Systems, University of Dodoma (2025/2026, Certificate Pending)
+- Secondary: Certificate of Secondary Education, Msisi Juu Secondary School (2020)
+
+SKILLS:
+- Information Systems, Digital Platform Management, Data Analysis (currently learning)
+- Business: Business Leadership, Business Development, Entrepreneurship
+- Sales: Direct Sales & Customer Engagement, Retail Sales
+- Creative: Video Editing & Animation (Adobe), Content Translation & Localisation
+- Soft: Leadership, Communication (Swahili & English), Team Collaboration, Problem-Solving
+- Tools: Microsoft Office
+
+CURRENTLY GROWING:
+- Data Science & AI Scholarship — Innovation Kgotla x DataCamp Donates (in progress)
+
+EXPERIENCE:
+- Founder & Chief Executive Officer, Mjapani Movies (2026–Ongoing): Founded and leads a Swahili-language movie streaming platform (mjapanimovies.online) end-to-end — content sourcing, translation/localisation, video production, platform operations, and business growth.
+- Solar Sales Agent, SUNKING (Solar Energy Company): Direct sales of solar home systems to households and communities; built strong customer relationships.
+- Shop Attendant, Wholesale Shop (Local & Imported Goods): Retail sales and customer service.
+
+PROJECTS:
+- Mjapani Movies (mjapanimovies.online): An online movie streaming platform bringing Hollywood, Nollywood, and international films to audiences translated and localised into Swahili, using a freemium model.
+
+LANGUAGES: Swahili (Native), English (Fluent)
+
+Answer questions about Venance using the above info. For other topics, provide helpful answers. Keep responses friendly, concise, and professional.`;
+
+    async function getGeminiResponse(userMessage) {
+        const requestBody = {
+            contents: [{ parts: [{ text: VENANCE_PROMPT + '\n\nUser: ' + userMessage + '\n\nAssistant:' }] }]
+        };
+
+        try {
+            const response = await fetch(GEMINI_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                if (errorData.error && errorData.error.code === 400) {
+                    return 'The AI service is currently unavailable. Please try again later.';
+                }
+                return 'AI service error (Code: ' + response.status + '). Please try again.';
+            }
+
+            const data = await response.json();
+            if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+                return data.candidates[0].content.parts[0].text;
+            }
+            return 'I received a response but could not extract the text. Please try again.';
+        } catch (error) {
+            return 'Network error. Please check your connection.';
+        }
+    }
+
+    // ============ FALLBACK: Local AI ============
+    function getLocalResponse(question) {
+        const q = question.toLowerCase();
+        if (q.includes('skill') || q.includes('tech') || q.includes('know')) {
+            return 'Venance has skills in: Information Systems, Digital Platform Management, Business Development, Direct Sales & Customer Engagement, Video Editing & Animation, Content Localisation, Leadership, and bilingual Communication (Swahili & English).';
+        }
+        if (q.includes('experience') || q.includes('work') || q.includes('job')) {
+            return 'Venance is the Founder & CEO of Mjapani Movies, a Swahili-language movie streaming platform he built and runs end-to-end. He also has direct sales experience as a Solar Sales Agent with SUNKING, and earlier retail experience as a Shop Attendant.';
+        }
+        if (q.includes('course') || q.includes('study') || q.includes('learn') || q.includes('grow')) {
+            return 'Venance holds a BSc in Information Systems from the University of Dodoma (UDOM), and is currently growing his Data Science & AI skills through a scholarship with Innovation Kgotla x DataCamp Donates.';
+        }
+        if (q.includes('project') || q.includes('portfolio') || q.includes('movie')) {
+            return 'Venance founded Mjapani Movies (mjapanimovies.online) — an online movie streaming platform bringing Hollywood, Nollywood, and international films to audiences translated and localised into Swahili.';
+        }
+        if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('reach')) {
+            return 'You can contact Venance via:\n- Email: contact@mjapanimovies.online\n- WhatsApp: +255 675 104 490\n- GitHub: github.com/Firstborn-tz';
+        }
+        if (q.includes('certificate') || q.includes('cert')) {
+            return 'Venance is currently pursuing a Data Science & AI Scholarship with Innovation Kgotla x DataCamp Donates, alongside his BSc in Information Systems.';
+        }
+        if (q.includes('education') || q.includes('degree')) {
+            return 'Venance is completing his BSc in Information Systems at the University of Dodoma (2025/2026, certificate pending). He completed his Certificate of Secondary Education at Msisi Juu Secondary School in 2020.';
+        }
+        if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+            return 'Hello! I can tell you about Venance\'s skills, experience, projects, education, or how to contact him. What would you like to know?';
+        }
+        return 'I can answer questions about Venance\'s skills, experience, projects, education, and contact info. Try asking: "What skills does Venance have?" or "How can I contact Venance?"';
+    }
+
+    // ============ CHAT FUNCTIONS ============
+    function addChatMessage(text, type) {
+        const chatBody = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `chat-msg ${type}`;
+        const icon = type === 'bot' ? 'fa-headset' : 'fa-user';
+        div.innerHTML = `<div class="chat-msg-avatar"><i class="fas ${icon}"></i></div><div class="chat-msg-content">${escapeText(text)}</div>`;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function escapeText(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML.replace(/\n/g, '<br>');
+    }
+
+    function showTyping() {
+        const chatBody = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = 'chat-msg bot';
+        div.id = 'typingIndicator';
+        div.innerHTML = `<div class="chat-msg-avatar"><i class="fas fa-headset"></i></div><div class="chat-msg-content"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function removeTyping() {
+        const el = document.getElementById('typingIndicator');
+        if (el) el.remove();
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        if (!message) return;
+        addChatMessage(message, 'user');
+        input.value = '';
+        showTyping();
+        let response = await getGeminiResponse(message);
+        if (response.includes('unavailable') || response.includes('error') || response.includes('Network')) {
+            response = getLocalResponse(message);
+        }
+        removeTyping();
+        addChatMessage(response, 'bot');
+    }
+
+    async function quickAsk(question) {
+        addChatMessage(question, 'user');
+        showTyping();
+        let response = await getGeminiResponse(question);
+        if (response.includes('unavailable') || response.includes('error') || response.includes('Network')) {
+            response = getLocalResponse(question);
+        }
+        removeTyping();
+        addChatMessage(response, 'bot');
+    }
+
+    // ============ UI CONTROLS ============
+    const chatWidget = document.getElementById('chatWidget');
+    const chatToggle = document.getElementById('chatToggle');
+    const overlay = document.getElementById('overlay');
+
+    chatToggle.addEventListener('click', () => {
+        chatWidget.classList.toggle('open');
+        overlay.classList.toggle('active');
+    });
+
+    function closeChat() {
+        chatWidget.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+
+    overlay.addEventListener('click', closeChat);
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+    themeToggle.addEventListener('click', () => {
+        const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.querySelector('i').className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    });
+
+    // Mobile Menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+    });
+    document.querySelectorAll('.mobile-menu a, .nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    });
+
+    // Navbar Scroll
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        const btn = document.getElementById('backToTop');
+        const show = window.scrollY > 500;
+        btn.style.opacity = show ? '1' : '0';
+        btn.style.visibility = show ? 'visible' : 'hidden';
+    });
+
+    document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({behavior:'smooth'});
+        });
+    });
+
+    // ============ PDF CV DOWNLOAD ============
+    document.getElementById('downloadCvBtn').addEventListener('click', function() {
+        const loader = document.getElementById('loaderOverlay');
+        const cvElement = document.getElementById('cvContent');
+
+        if (!cvElement) {
+            alert('CV content not found.');
+            return;
+        }
+
+        loader.classList.add('active');
+
+        // Clone the CV content for PDF generation
+        const clone = cvElement.cloneNode(true);
+        clone.style.display = 'block';
+        clone.style.position = 'fixed';
+        clone.style.left = '-9999px';
+        clone.style.top = '0';
+        clone.style.width = '900px';
+        clone.style.background = '#12121a';
+        clone.style.padding = '2rem';
+        clone.style.zIndex = '-1';
+        document.body.appendChild(clone);
+
+        const opt = {
+            margin: 0.5,
+            filename: 'Venance_Nyuma_CV.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, backgroundColor: '#12121a', letterRendering: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(clone).save().then(function() {
+            document.body.removeChild(clone);
+            loader.classList.remove('active');
+        }).catch(function(err) {
+            console.error('PDF generation error:', err);
+            document.body.removeChild(clone);
+            loader.classList.remove('active');
+            alert('⚠️ There was an error generating the PDF. Please try again.');
+        });
+    });
+
+    console.log('Portfolio loaded successfully!');
+    </script>
+</body>
+</html>
